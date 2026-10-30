@@ -20,13 +20,13 @@
 		{
 			"path": "pages/order/order",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "订单"
 			}
 		},
 		{
 			"path": "pages/my/my",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "我的"
 			}
 		},
 		{
@@ -108,9 +108,9 @@
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
+		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#FFFFFF",
+		"navigationBarBackgroundColor": "#b8d98e",
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {

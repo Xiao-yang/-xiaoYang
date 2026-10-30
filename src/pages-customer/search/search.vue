@@ -6,7 +6,7 @@
 				placeholder="搜索摊位 / 商品"
 				:show-action="true"
 				action-text="搜索"
-				bg-color="#f5f5f5"
+				bg-color="#ffffff"
 				search-icon-color="#8bc34a"
 				@search="handleSearch"
 				@custom="handleSearch"
@@ -139,7 +139,7 @@ onReachBottom(() => {
 	top: 0;
 	z-index: 20;
 	padding: 20rpx 24rpx;
-	background-color: #ffffff;
+	background-color: #b8d98e;
 }
 
 .history {
