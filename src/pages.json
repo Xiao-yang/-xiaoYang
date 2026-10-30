@@ -55,6 +55,12 @@
 					}
 				},
 				{
+					"path": "goods-edit/goods-edit",
+					"style": {
+						"navigationBarTitleText": "新增商品"
+					}
+				},
+				{
 					"path": "shop/shop",
 					"style": {
 						"navigationBarTitleText": "店铺管理"

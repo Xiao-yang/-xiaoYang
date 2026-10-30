@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { BASE_URL } from '@/utils/request'
 import { useUserStore } from '@/store/user'
 
@@ -87,6 +87,22 @@ const userStore = useUserStore()
 /** 内部文件列表，交给 u-upload 展示 */
 const fileList = ref<UploadFileItem[]>(
 	props.modelValue.map((url) => ({ url, status: 'success' as const }))
+)
+
+/** 父组件异步回填（如编辑页加载详情）时，同步到内部列表 */
+watch(
+	() => props.modelValue,
+	(urls) => {
+		const current = fileList.value
+			.map((item) => item.url)
+			.filter((url): url is string => !!url)
+		const next = urls || []
+		const same =
+			current.length === next.length && current.every((url, index) => url === next[index])
+		if (same) return
+		fileList.value = next.map((url) => ({ url, status: 'success' as const }))
+	},
+	{ deep: true }
 )
 
 /** 把上传成功的图片地址同步给父组件 */
