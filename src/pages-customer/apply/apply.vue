@@ -30,6 +30,19 @@
 			/>
 		</view>
 
+		<!-- 摆摊位置 -->
+		<view class="card">
+			<view class="row row--last" @click="chooseLocation">
+				<text class="label">摆摊位置</text>
+				<view class="location">
+					<text class="location__text" :class="{ 'location__text--empty': !form.address }">
+						{{ form.address || '请选择摆摊位置' }}
+					</text>
+					<up-icon name="map-fill" size="16" color="#8a8f86" />
+				</view>
+			</view>
+		</view>
+
 		<!-- 底部提交按钮 -->
 		<view class="submit-bar">
 			<up-button
@@ -58,9 +71,27 @@ const userStore = useUserStore()
 
 const form = reactive({
 	name: '',
-	images: [] as string[]
+	images: [] as string[],
+	/** 摆摊位置描述 */
+	address: '',
+	latitude: null as number | null,
+	longitude: null as number | null
 })
 const submitting = ref(false)
+
+/** 选择摆摊位置（地图选点，返回地址与经纬度） */
+const chooseLocation = () => {
+	uni.chooseLocation({
+		success: (res) => {
+			form.address = res.address || res.name || ''
+			form.latitude = res.latitude
+			form.longitude = res.longitude
+		},
+		fail: () => {
+			uni.showToast({ title: '需要授权位置信息才能选择摆摊位置', icon: 'none' })
+		}
+	})
+}
 
 // 手机号由登录态带入，不可修改
 const phone = computed(() => userStore.userInfo.phone || '-')
@@ -84,11 +115,21 @@ const handleSubmit = async () => {
 		uni.showToast({ title: `摊位图片最多上传 ${PHOTO_MAX_COUNT} 张`, icon: 'none' })
 		return
 	}
+	if (!form.address || form.latitude === null || form.longitude === null) {
+		uni.showToast({ title: '请选择摆摊位置', icon: 'none' })
+		return
+	}
 	if (submitting.value) return
 
 	submitting.value = true
 	try {
-		await createVendorApplication({ stallName, stallPhotos: form.images })
+		await createVendorApplication({
+			address: form.address,
+			latitude: form.latitude,
+			longitude: form.longitude,
+			stallName,
+			stallPhotos: form.images
+		})
 		uni.showToast({ title: '申请已提交，请等待审核', icon: 'none' })
 		setTimeout(() => uni.navigateBack(), 500)
 	} catch (err) {
@@ -120,6 +161,30 @@ const handleSubmit = async () => {
 
 .card + .card {
 	margin-top: 30rpx;
+}
+
+.row--last {
+	border-bottom: none;
+}
+
+.location {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	flex: 1;
+	margin-left: 20rpx;
+}
+
+.location__text {
+	max-width: 420rpx;
+	font-size: 28rpx;
+	color: #333333;
+	text-align: right;
+	word-break: break-all;
+}
+
+.location__text--empty {
+	color: #999999;
 }
 
 .row {

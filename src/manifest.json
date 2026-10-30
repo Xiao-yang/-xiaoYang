@@ -56,7 +56,13 @@
             "minified" : true
         },
         "usingComponents" : true,
-        "mergeVirtualHostAttributes" : true
+        "mergeVirtualHostAttributes" : true,
+        "requiredPrivateInfos" : [ "getLocation", "chooseLocation" ],
+        "permission" : {
+            "scope.userLocation" : {
+                "desc" : "用于计算您与摊位的距离"
+            }
+        }
     },
     "mp-alipay" : {
         "usingComponents" : true

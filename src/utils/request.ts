@@ -1,7 +1,7 @@
 import { useUserStore } from '@/store/user'
 
 /** 接口基础地址，按需修改（例如 https://api.xxx.com） */
-export const BASE_URL = 'http://localhost:8080/api'
+export const BASE_URL = 'http://192.168.10.5:8080/api'
 
 /** 请求超时时间（毫秒） */
 const TIMEOUT = 10000

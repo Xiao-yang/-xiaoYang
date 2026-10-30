@@ -6,6 +6,12 @@ export interface VendorApplicationParams {
 	stallName: string
 	/** 摊位图片地址，必填，1~3 个 */
 	stallPhotos: string[]
+	/** 摆摊位置描述，必填 */
+	address: string
+	/** 摆摊位置纬度 */
+	latitude: number
+	/** 摆摊位置经度 */
+	longitude: number
 }
 
 /** 提交摊主申请 */
@@ -26,8 +32,13 @@ export interface VendorApplication {
 	stallName: string
 	phone: string
 	stallPhotos: string[]
+	/** 摆摊位置描述 */
+	address?: string | null
+	latitude?: number | null
+	longitude?: number | null
 	status: VendorApplicationStatus
 	createdAt?: string
+	rejectReason?: string
 }
 
 /** 审核列表查询参数 */

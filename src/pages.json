@@ -11,7 +11,10 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "",
+				"navigationBarBackgroundColor": "#b8d98e",
+				"navigationBarTextStyle": "black"
 			}
 		},
 		{
@@ -41,6 +44,12 @@
 					"path": "apply/apply",
 					"style": {
 						"navigationBarTitleText": "申请成为摊主"
+					}
+				},
+				{
+					"path": "search/search",
+					"style": {
+						"navigationBarTitleText": "搜索"
 					}
 				}
 			]

@@ -22,3 +22,6 @@ export const login = (params: LoginParams) => {
 	// 登录接口不需要携带 token
 	return post<LoginResult>('/auth/login', params, { auth: false })
 }
+
+/** 按数据库最新身份重新签发令牌（如摊主申请通过后升级为摊主） */
+export const refreshToken = () => post<LoginResult>('/auth/refresh')

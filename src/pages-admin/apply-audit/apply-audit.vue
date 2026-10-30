@@ -34,12 +34,16 @@
 				</view>
 
 				<view class="info-row">
-					<text class="info-label">手机号：</text>
+					<text class="info-label">手&ensp;机&ensp;号：</text>
 					<text class="info-value">{{ item.phone || '-' }}</text>
+				</view>
+				<view class="info-row" v-if="item.status === 'rejected'">
+					<text class="info-label">失败原因：</text>
+					<text class="info-value">{{ item.rejectReason || '-' }}</text>
 				</view>
 
 				<view class="info-row">
-					<text class="info-label">图&emsp;片：</text>
+					<text class="info-label">图&emsp;&emsp;片：</text>
 					<view class="photos">
 						<image
 							v-for="(url, index) in (item.stallPhotos || []).slice(0, 3)"
@@ -307,7 +311,7 @@ page {
 }
 
 .list {
-	padding: 202rpx 24rpx calc(24rpx + env(safe-area-inset-bottom));
+	padding: 197rpx 24rpx calc(24rpx + env(safe-area-inset-bottom));
 	box-sizing: border-box;
 }
 

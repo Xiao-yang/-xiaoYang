@@ -64,18 +64,30 @@
 import { computed, ref } from 'vue'
 import { useUserStore } from '@/store/user'
 import { getVendorApplication } from '@/api/vendorApplication'
+import { refreshToken } from '@/api/user'
 import { onShow } from '@dcloudio/uni-app'
 
 const userStore = useUserStore()
 const applyStatus = ref('立即申请')
 
 onShow(async () => {
-	if(userStore.isLogin && userStore.userInfo.role === 'customer') {
+	// 仅客户身份需要检查摊主申请进度
+	if (!userStore.isLogin || userStore.userInfo.role !== 'customer') {
+		applyStatus.value = '立即申请'
+		return
+	}
+	try {
 		const res = await getVendorApplication()
-		applyStatus.value = res.statusText || '立即申请'
-		// 如果是审核通过，则重新获取用户信息
-		if(applyStatus.value === '审核通过') {
+		applyStatus.value = res?.statusText || '立即申请'
+		// 审核通过：用数据库最新身份重新签发令牌，无需重新登录即可升级为摊主
+		if (res?.status === 'approved') {
+			const data = await refreshToken()
+			userStore.login(data.token, data.user)
+			applyStatus.value = '立即申请'
+			uni.showToast({ title: '审核已通过，已升级为摊主', icon: 'none' })
 		}
+	} catch (err) {
+		// 错误信息已由 request 的响应拦截统一 toast
 	}
 })
 
