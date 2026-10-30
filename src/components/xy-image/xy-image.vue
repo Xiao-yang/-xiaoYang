@@ -39,22 +39,22 @@ const emptyStyle = computed(() => ({
 }))
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .xy-image {
 	width: 100%;
 	height: 100%;
 	display: block;
-}
 
-.xy-image--empty {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-sizing: border-box;
-}
+	&--empty {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+	}
 
-.xy-image__text {
-	font-size: 22rpx;
-	color: #9aa093;
+	&__text {
+		font-size: 22rpx;
+		color: #9aa093;
+	}
 }
 </style>

@@ -46,24 +46,24 @@ const handleClick = () => {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .xy-loading {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 32rpx 0;
-}
 
-.xy-loading__text {
-	font-size: 24rpx;
-	color: #999999;
-	margin-left: 12rpx;
-}
+	&__text {
+		font-size: 24rpx;
+		color: #999999;
+		margin-left: 12rpx;
+	}
 
-.xy-loading__line {
-	width: 80rpx;
-	height: 1rpx;
-	background-color: #dddddd;
-	margin: 0 24rpx;
+	&__line {
+		width: 80rpx;
+		height: 1rpx;
+		background-color: #dddddd;
+		margin: 0 24rpx;
+	}
 }
 </style>

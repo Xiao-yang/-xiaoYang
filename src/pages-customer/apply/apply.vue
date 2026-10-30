@@ -140,95 +140,95 @@ const handleSubmit = async () => {
 }
 </script>
 
-<style>
+<style lang="scss">
     page{
 		background-color: #f5f5f5;
 	}
 </style>
-<style scoped>
+<style lang="scss" scoped>
 .page {
 	padding: 30rpx;
 	padding-bottom: 180rpx;
 	box-sizing: border-box;
-}
 
-.card {
-	background-color: #ffffff;
-	border-radius: 16rpx;
-	padding: 0 30rpx;
-	box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
-}
+	.card {
+		background-color: #ffffff;
+		border-radius: 16rpx;
+		padding: 0 30rpx;
+		box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
 
-.card + .card {
-	margin-top: 30rpx;
-}
+		& + .card {
+			margin-top: 30rpx;
+		}
 
-.row--last {
-	border-bottom: none;
-}
+		.row {
+			display: flex;
+			align-items: center;
+			height: 100rpx;
+			border-bottom: 1rpx solid #f0f0f0;
 
-.location {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	flex: 1;
-	margin-left: 20rpx;
-}
+			&:last-child {
+				border-bottom: none;
+			}
 
-.location__text {
-	max-width: 420rpx;
-	font-size: 28rpx;
-	color: #333333;
-	text-align: right;
-	word-break: break-all;
-}
+			&--last {
+				border-bottom: none;
+			}
 
-.location__text--empty {
-	color: #999999;
-}
+			.value {
+				flex: 1;
+				font-size: 30rpx;
+				color: #666666;
+			}
 
-.row {
-	display: flex;
-	align-items: center;
-	height: 100rpx;
-	border-bottom: 1rpx solid #f0f0f0;
-}
+			.input {
+				flex: 1;
+			}
 
-.row:last-child {
-	border-bottom: none;
-}
+			.location {
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				flex: 1;
+				margin-left: 20rpx;
 
-.label {
-	width: 160rpx;
-	font-size: 30rpx;
-	color: #333333;
-	flex-shrink: 0;
-}
+				&__text {
+					max-width: 420rpx;
+					font-size: 28rpx;
+					color: #333333;
+					text-align: right;
+					word-break: break-all;
+				}
 
-.value {
-	flex: 1;
-	font-size: 30rpx;
-	color: #666666;
-}
+				&__text--empty {
+					color: #999999;
+				}
+			}
+		}
 
-.input {
-	flex: 1;
-}
+		.label {
+			width: 160rpx;
+			font-size: 30rpx;
+			color: #333333;
+			flex-shrink: 0;
 
-.card .label:first-child {
-	display: block;
-}
+			&:first-child {
+				display: block;
+			}
+		}
 
-.upload {
-	margin: 30rpx 0 40rpx;
-}
+		.upload {
+			margin: 30rpx 0 40rpx;
+		}
+	}
 
-.submit-bar {
-	position: fixed;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	padding: 20rpx 30rpx calc(20rpx + env(safe-area-inset-bottom));
-	box-sizing: border-box;
+	.submit-bar {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 20rpx 30rpx calc(20rpx + env(safe-area-inset-bottom));
+		box-sizing: border-box;
+	}
 }
 </style>

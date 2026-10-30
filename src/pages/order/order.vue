@@ -258,131 +258,131 @@ onReachBottom(() => {
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .page {
 	min-height: 100vh;
 	padding-bottom: 24rpx;
 	background-color: #f5f5f5;
 	box-sizing: border-box;
-}
 
-/* 未登录 */
-.unlogin {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 200rpx;
-}
+	/* 未登录 */
+	.unlogin {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-top: 200rpx;
 
-.unlogin__text {
-	margin-top: 24rpx;
-	font-size: 28rpx;
-	color: #999999;
-}
+		&__text {
+			margin-top: 24rpx;
+			font-size: 28rpx;
+			color: #999999;
+		}
 
-.unlogin__btn {
-	margin-top: 40rpx;
-	width: 240rpx;
-}
+		&__btn {
+			margin-top: 40rpx;
+			width: 240rpx;
+		}
+	}
 
-/* 搜索栏 */
-.search-bar {
-	position: sticky;
-	top: 0;
-	z-index: 20;
-	padding: 20rpx 24rpx 10rpx;
-	background-color: #ffffff;
-}
+	/* 搜索栏 */
+	.search-bar {
+		position: sticky;
+		top: 0;
+		z-index: 20;
+		padding: 20rpx 24rpx 10rpx;
+		background-color: #ffffff;
+	}
 
-/* 列表 */
-.list {
-	padding: 0 24rpx;
-}
+	/* 列表 */
+	.list {
+		padding: 0 24rpx;
 
-.order-card {
-	margin-bottom: 20rpx;
-	padding: 24rpx;
-	background-color: #ffffff;
-	border-radius: 16rpx;
-}
+		.order-card {
+			margin-bottom: 20rpx;
+			padding: 24rpx;
+			background-color: #ffffff;
+			border-radius: 16rpx;
 
-.order-card__head {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding-bottom: 16rpx;
-	border-bottom: 1rpx solid #f0f0f0;
-}
+			&__head {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding-bottom: 16rpx;
+				border-bottom: 1rpx solid #f0f0f0;
+			}
 
-.order-card__no {
-	flex: 1;
-	font-size: 26rpx;
-	color: #333333;
-	word-break: break-all;
-}
+			&__no {
+				flex: 1;
+				font-size: 26rpx;
+				color: #333333;
+				word-break: break-all;
+			}
 
-.order-card__status {
-	margin-left: 16rpx;
-	padding: 4rpx 16rpx;
-	font-size: 22rpx;
-	border-radius: 8rpx;
-}
+			&__status {
+				margin-left: 16rpx;
+				padding: 4rpx 16rpx;
+				font-size: 22rpx;
+				border-radius: 8rpx;
+			}
 
-.order-card__status--pending {
-	color: #d98014;
-	background-color: #fdf1e2;
-}
+			&__status--pending {
+				color: #d98014;
+				background-color: #fdf1e2;
+			}
 
-.order-card__status--processing {
-	color: #1b7ed9;
-	background-color: #e6f1fc;
-}
+			&__status--processing {
+				color: #1b7ed9;
+				background-color: #e6f1fc;
+			}
 
-.order-card__status--completed {
-	color: #2f8f46;
-	background-color: #e8f5ea;
-}
+			&__status--completed {
+				color: #2f8f46;
+				background-color: #e8f5ea;
+			}
 
-.order-card__status--canceled {
-	color: #999999;
-	background-color: #f2f2f2;
-}
+			&__status--canceled {
+				color: #999999;
+				background-color: #f2f2f2;
+			}
 
-.order-card__row {
-	display: flex;
-	justify-content: space-between;
-	margin-top: 16rpx;
-}
+			&__row {
+				display: flex;
+				justify-content: space-between;
+				margin-top: 16rpx;
+			}
 
-.order-card__label {
-	font-size: 24rpx;
-	color: #999999;
-}
+			&__label {
+				font-size: 24rpx;
+				color: #999999;
+			}
 
-.order-card__value {
-	font-size: 24rpx;
-	color: #333333;
-}
+			&__value {
+				font-size: 24rpx;
+				color: #333333;
+			}
 
-.order-card__foot {
-	display: flex;
-	justify-content: flex-end;
-	margin-top: 20rpx;
-}
+			&__foot {
+				display: flex;
+				justify-content: flex-end;
+				margin-top: 20rpx;
+			}
 
-.order-card__price {
-	font-size: 30rpx;
-	font-weight: bold;
-	color: #f56c6c;
-}
+			&__price {
+				font-size: 30rpx;
+				font-weight: bold;
+				color: #f56c6c;
+			}
+		}
 
-.state {
-	padding: 24rpx 0;
-	text-align: center;
-}
+		.state {
+			padding: 24rpx 0;
+			text-align: center;
 
-.state__text {
-	font-size: 24rpx;
-	color: #999999;
+			&__text {
+				font-size: 24rpx;
+				color: #999999;
+			}
+		}
+	}
 }
 </style>

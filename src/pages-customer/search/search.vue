@@ -126,57 +126,57 @@ onReachBottom(() => {
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .page {
 	min-height: 100vh;
 	padding-bottom: 24rpx;
 	background-color: #f5f5f5;
 	box-sizing: border-box;
-}
 
-.search-bar {
-	position: sticky;
-	top: 0;
-	z-index: 20;
-	padding: 20rpx 24rpx;
-	background-color: #b8d98e;
-}
+	.search-bar {
+		position: sticky;
+		top: 0;
+		z-index: 20;
+		padding: 20rpx 24rpx;
+		background-color: #b8d98e;
+	}
 
-.history {
-	margin: 0 14rpx 16rpx;
-	padding: 24rpx;
-	border-radius: 16rpx;
-}
+	.history {
+		margin: 0 14rpx 16rpx;
+		padding: 24rpx;
+		border-radius: 16rpx;
 
-.history__head {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
+		&__head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
 
-.history__title {
-	font-size: 28rpx;
-	font-weight: bold;
-	color: #333333;
-}
+		&__title {
+			font-size: 28rpx;
+			font-weight: bold;
+			color: #333333;
+		}
 
-.history__clear {
-	padding: 8rpx;
-}
+		&__clear {
+			padding: 8rpx;
+		}
 
-.history__tags {
-	display: flex;
-	flex-wrap: wrap;
-	margin-top: 20rpx;
-}
+		&__tags {
+			display: flex;
+			flex-wrap: wrap;
+			margin-top: 20rpx;
+		}
 
-.history__tag {
-	margin-right: 16rpx;
-	margin-bottom: 16rpx;
-	padding: 12rpx 24rpx;
-	font-size: 24rpx;
-	color: #666666;
-	background-color: #fff;
-	border-radius: 24rpx;
+		&__tag {
+			margin-right: 16rpx;
+			margin-bottom: 16rpx;
+			padding: 12rpx 24rpx;
+			font-size: 24rpx;
+			color: #666666;
+			background-color: #fff;
+			border-radius: 24rpx;
+		}
+	}
 }
 </style>

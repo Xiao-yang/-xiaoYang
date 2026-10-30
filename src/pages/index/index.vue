@@ -60,65 +60,65 @@ onReachBottom(() => {
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .page {
 	min-height: 100vh;
 	padding-bottom: 24rpx;
 	background-color: #f5f5f5;
 	box-sizing: border-box;
-}
 
-.header {
-	position: sticky;
-	top: 0;
-	z-index: 20;
-	padding: 0 24rpx 20rpx;
-	background-color: #b8d98e;
-}
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 20;
+		padding: 0 24rpx 20rpx;
+		background-color: #b8d98e;
 
-.brand {
-	display: flex;
-	align-items: center;
-}
+		.brand {
+			display: flex;
+			align-items: center;
 
-.brand__logo {
-	width: 96rpx;
-	height: 96rpx;
-	border-radius: 20rpx;
-}
+			&__logo {
+				width: 96rpx;
+				height: 96rpx;
+				border-radius: 20rpx;
+			}
 
-.brand__text {
-	display: flex;
-	flex-direction: column;
-	margin-left: 20rpx;
-}
+			&__text {
+				display: flex;
+				flex-direction: column;
+				margin-left: 20rpx;
+			}
 
-.brand__name {
-	font-size: 40rpx;
-	font-weight: bold;
-	color: #2f3d1f;
-	letter-spacing: 2rpx;
-}
+			&__name {
+				font-size: 40rpx;
+				font-weight: bold;
+				color: #2f3d1f;
+				letter-spacing: 2rpx;
+			}
 
-.brand__slogan {
-	margin-top: 6rpx;
-	font-size: 22rpx;
-	color: #55663a;
-}
+			&__slogan {
+				margin-top: 6rpx;
+				font-size: 22rpx;
+				color: #55663a;
+			}
+		}
 
-.search {
-	display: flex;
-	align-items: center;
-	margin-top: 24rpx;
-	padding: 0 24rpx;
-	height: 76rpx;
-	background-color: #ffffff;
-	border-radius: 38rpx;
-}
+		.search {
+			display: flex;
+			align-items: center;
+			margin-top: 24rpx;
+			padding: 0 24rpx;
+			height: 76rpx;
+			background-color: #ffffff;
+			border-radius: 38rpx;
 
-.search__placeholder {
-	margin-left: 12rpx;
-	font-size: 26rpx;
-	color: #999999;
+			&__placeholder {
+				margin-left: 12rpx;
+				font-size: 26rpx;
+				color: #999999;
+			}
+		}
+	}
 }
 </style>

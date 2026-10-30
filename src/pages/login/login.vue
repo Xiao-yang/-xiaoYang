@@ -130,105 +130,105 @@ const handleLogin = async () => {
 onUnmounted(stopCountdown)
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .page {
 	min-height: 100vh;
 	background-color: #f5f5f5;
 	padding: 0 60rpx;
 	box-sizing: border-box;
-}
 
-.login-card {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 120rpx;
-}
+	.login-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-top: 120rpx;
 
-.logo {
-	width: 160rpx;
-	height: 160rpx;
-	border-radius: 50%;
-	background-color: #ffffff;
-}
+		.logo {
+			width: 160rpx;
+			height: 160rpx;
+			border-radius: 50%;
+			background-color: #ffffff;
+		}
 
-.title {
-	font-size: 40rpx;
-	font-weight: bold;
-	color: #333333;
-	margin-top: 40rpx;
-}
+		.title {
+			font-size: 40rpx;
+			font-weight: bold;
+			color: #333333;
+			margin-top: 40rpx;
+		}
 
-.desc {
-	font-size: 28rpx;
-	color: #999999;
-	margin-top: 16rpx;
-}
+		.desc {
+			font-size: 28rpx;
+			color: #999999;
+			margin-top: 16rpx;
+		}
 
-.form {
-	width: 100%;
-	background-color: #ffffff;
-	border-radius: 16rpx;
-	padding: 0 30rpx;
-	margin-top: 80rpx;
-	box-sizing: border-box;
-}
+		.form {
+			width: 100%;
+			background-color: #ffffff;
+			border-radius: 16rpx;
+			padding: 0 30rpx;
+			margin-top: 80rpx;
+			box-sizing: border-box;
 
-.form-item {
-	display: flex;
-	align-items: center;
-	height: 100rpx;
-	border-bottom: 1rpx solid #f0f0f0;
-}
+			.form-item {
+				display: flex;
+				align-items: center;
+				height: 100rpx;
+				border-bottom: 1rpx solid #f0f0f0;
 
-.form-item:last-child {
-	border-bottom: none;
-}
+				&:last-child {
+					border-bottom: none;
+				}
 
-.label {
-	width: 130rpx;
-	font-size: 30rpx;
-	color: #333333;
-}
+				.label {
+					width: 130rpx;
+					font-size: 30rpx;
+					color: #333333;
+				}
 
-.input {
-	flex: 1;
-	font-size: 30rpx;
-	color: #333333;
+				.input {
+					flex: 1;
+					font-size: 30rpx;
+					color: #333333;
+				}
+
+				.code-btn {
+					font-size: 26rpx;
+					color: #8bc34a;
+					padding-left: 20rpx;
+
+					&.disabled {
+						color: #bbbbbb;
+					}
+				}
+			}
+		}
+
+		.login-btn {
+			width: 100%;
+			height: 88rpx;
+			line-height: 88rpx;
+			font-size: 32rpx;
+			color: #ffffff;
+			background-color: #b8d98e;
+			border-radius: 44rpx;
+			margin-top: 80rpx;
+
+			&::after {
+				border: none;
+			}
+		}
+
+		.agreement {
+			font-size: 24rpx;
+			color: #bbbbbb;
+			margin-top: 30rpx;
+		}
+	}
 }
 
 .placeholder {
 	color: #c0c0c0;
-}
-
-.code-btn {
-	font-size: 26rpx;
-	color: #8bc34a;
-	padding-left: 20rpx;
-}
-
-.code-btn.disabled {
-	color: #bbbbbb;
-}
-
-.login-btn {
-	width: 100%;
-	height: 88rpx;
-	line-height: 88rpx;
-	font-size: 32rpx;
-	color: #ffffff;
-	background-color: #b8d98e;
-	border-radius: 44rpx;
-	margin-top: 80rpx;
-}
-
-.login-btn::after {
-	border: none;
-}
-
-.agreement {
-	font-size: 24rpx;
-	color: #bbbbbb;
-	margin-top: 30rpx;
 }
 </style>

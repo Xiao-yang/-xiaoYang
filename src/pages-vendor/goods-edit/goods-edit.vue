@@ -251,7 +251,7 @@ const handleSubmit = async () => {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 page {
 	background-color: #f5f5f5;
 }
@@ -261,121 +261,121 @@ page {
 	background-color: #f5f5f5;
 	padding: 24rpx 24rpx calc(180rpx + env(safe-area-inset-bottom));
 	box-sizing: border-box;
-}
 
-.card {
-	background-color: #ffffff;
-	border-radius: 16rpx;
-	padding: 8rpx 30rpx;
-	box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
-}
+	.card {
+		background-color: #ffffff;
+		border-radius: 16rpx;
+		padding: 8rpx 30rpx;
+		box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
 
-.form-item {
-	padding: 24rpx 0;
-	border-bottom: 1rpx solid #f5f5f5;
-}
+		.form-item {
+			padding: 24rpx 0;
+			border-bottom: 1rpx solid #f5f5f5;
 
-.form-item:last-child {
-	border-bottom: none;
-}
+			&:last-child {
+				border-bottom: none;
+			}
 
-.form-item--row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
+			.label {
+				display: block;
+				font-size: 28rpx;
+				font-weight: 500;
+				color: #333;
+				margin-bottom: 12rpx;
+			}
 
-.label {
-	display: block;
-	font-size: 28rpx;
-	font-weight: 500;
-	color: #333;
-	margin-bottom: 12rpx;
-}
+			&--row {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
 
-.form-item--row .label {
-	margin-bottom: 0;
-}
+				.label {
+					margin-bottom: 0;
+				}
+			}
 
-.spec-head {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 8rpx;
-}
+			.spec-head {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-bottom: 8rpx;
 
-.spec-head .label {
-	margin-bottom: 0;
-}
+				.label {
+					margin-bottom: 0;
+				}
+			}
 
-.spec-add {
-	font-size: 26rpx;
-	color: #8bc34a;
-}
+			.spec-add {
+				font-size: 26rpx;
+				color: #8bc34a;
+			}
 
-.spec-row {
-	display: flex;
-	align-items: center;
-	margin-top: 16rpx;
-}
+			.spec-row {
+				display: flex;
+				align-items: center;
+				margin-top: 16rpx;
 
-.spec-field {
-	display: flex;
-	align-items: center;
-	height: 88rpx;
-	padding: 0 20rpx;
-	background-color: #f7f8f5;
-	border: 1rpx solid #e2e5dd;
-	border-radius: 12rpx;
-	box-sizing: border-box;
-}
+				.spec-field {
+					display: flex;
+					align-items: center;
+					height: 88rpx;
+					padding: 0 20rpx;
+					background-color: #f7f8f5;
+					border: 1rpx solid #e2e5dd;
+					border-radius: 12rpx;
+					box-sizing: border-box;
 
-.spec-field--name {
-	flex: 1;
-}
+					&--name {
+						flex: 1;
+					}
 
-.spec-field--price {
-	width: 210rpx;
-	margin-left: 16rpx;
-	background-color: #fffaf3;
-	border-color: #f0e0c8;
-}
+					&--price {
+						width: 210rpx;
+						margin-left: 16rpx;
+						background-color: #fffaf3;
+						border-color: #f0e0c8;
+					}
+				}
 
-.spec-delete {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 56rpx;
-	height: 56rpx;
-	margin-left: 16rpx;
-	border-radius: 50%;
-	background-color: #fdecec;
-	flex-shrink: 0;
-}
+				.spec-delete {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: 56rpx;
+					height: 56rpx;
+					margin-left: 16rpx;
+					border-radius: 50%;
+					background-color: #fdecec;
+					flex-shrink: 0;
 
-.spec-delete__text {
-	font-size: 28rpx;
-	color: #f56c6c;
-	line-height: 1;
-}
+					&__text {
+						font-size: 28rpx;
+						color: #f56c6c;
+						line-height: 1;
+					}
+				}
+			}
 
-.spec-tip {
-	display: block;
-	font-size: 24rpx;
-	color: #999999;
-	margin-top: 12rpx;
-}
+			.spec-tip {
+				display: block;
+				font-size: 24rpx;
+				color: #999999;
+				margin-top: 12rpx;
+			}
+		}
+	}
 
-.footer {
-	position: fixed;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 20rpx 0 calc(20rpx + env(safe-area-inset-bottom));
-	background-color: #ffffff;
-	box-shadow: 0 -2rpx 12rpx rgba(0, 0, 0, 0.04);
+	.footer {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 20rpx 0 calc(20rpx + env(safe-area-inset-bottom));
+		background-color: #ffffff;
+		box-shadow: 0 -2rpx 12rpx rgba(0, 0, 0, 0.04);
+	}
 }
 </style>
