@@ -19,7 +19,7 @@ export interface ApiResult<T = any> {
 export interface RequestOptions {
 	/** 接口地址，支持完整 url（http 开头）或基于 BASE_URL 的相对路径 */
 	url: string
-	method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
+	method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 	data?: any
 	header?: Record<string, string>
 	/** 是否携带 token，默认 true */
@@ -149,6 +149,10 @@ export const post = <T = any>(url: string, data?: any, options?: Partial<Request
 
 export const put = <T = any>(url: string, data?: any, options?: Partial<RequestOptions>) => {
 	return request<T>({ url, method: 'PUT', data, ...options })
+}
+
+export const patch = <T = any>(url: string, data?: any, options?: Partial<RequestOptions>) => {
+	return request<T>({ url, method: 'PATCH', data, ...options })
 }
 
 export const del = <T = any>(url: string, data?: any, options?: Partial<RequestOptions>) => {

@@ -115,9 +115,9 @@ const handleLogin = async () => {
 
 	loading.value = true
 	try {
-		const { token, userInfo } = await login({ ...form })
+		const { token, user } = await login({ ...form })
 		// 写入 pinia 登录态，「我的」页会同步展示头像与昵称
-		userStore.login(token, userInfo)
+		userStore.login(token, user)
 		uni.showToast({ title: '登录成功', icon: 'success' })
 		setTimeout(backToMy, 500)
 	} catch (err) {

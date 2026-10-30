@@ -9,7 +9,7 @@ export interface LoginParams {
 /** 登录返回数据（字段按后端实际返回调整） */
 export interface LoginResult {
 	token: string
-	userInfo: UserInfo
+	user: UserInfo
 }
 
 /** 发送短信验证码 */

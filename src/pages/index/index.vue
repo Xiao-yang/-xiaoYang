@@ -4,19 +4,12 @@
     <view class="text-area">
       <text class="title">{{ title }}</text>
     </view>
-		<up-input v-model="form.phone" placeholder="请输入手机号"></up-input>
-    <view class="form-item">
-      <text class="label">验证码</text>
-    </view>
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 const title = ref('Hello')
-const form = ref({
-	phone: ''
-})
 </script>
 
 <style>

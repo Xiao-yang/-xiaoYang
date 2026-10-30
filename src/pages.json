@@ -33,10 +33,63 @@
 			}
 		}
 	],
+	"subPackages": [
+		{
+			"root": "pages-customer",
+			"pages": [
+				{
+					"path": "apply/apply",
+					"style": {
+						"navigationBarTitleText": "申请成为摊主"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages-vendor",
+			"pages": [
+				{
+					"path": "goods/goods",
+					"style": {
+						"navigationBarTitleText": "商品管理"
+					}
+				},
+				{
+					"path": "shop/shop",
+					"style": {
+						"navigationBarTitleText": "店铺管理"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages-admin",
+			"pages": [
+				{
+					"path": "apply-audit/apply-audit",
+					"style": {
+						"navigationBarTitleText": "摊主申请审核"
+					}
+				},
+				{
+					"path": "customer/customer",
+					"style": {
+						"navigationBarTitleText": "客户管理"
+					}
+				},
+				{
+					"path": "vendor/vendor",
+					"style": {
+						"navigationBarTitleText": "摊主管理"
+					}
+				}
+			]
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
