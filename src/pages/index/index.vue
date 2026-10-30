@@ -3,7 +3,7 @@
 		<!-- 顶部：品牌 + 搜索入口（吸顶） -->
 		<view class="header" :style="{ paddingTop: headerPaddingTop + 'px' }">
 			<view class="brand">
-				<image class="brand__logo" src="/static/logo.png" mode="aspectFit" />
+				<xy-image class="brand__logo" src="/static/logo.png" mode="aspectFit" />
 				<view class="brand__text">
 					<text class="brand__name">小羊快取</text>
 					<text class="brand__slogan">现做现取，美味不用等</text>
@@ -22,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { onReachBottom } from '@dcloudio/uni-app'
+import { getCurrentInstance, ref } from 'vue'
+import { onReady, onReachBottom } from '@dcloudio/uni-app'
 
 /** 列表组件实例，用于触发上拉加载 */
 const shopListRef = ref<{ loadMore: () => void } | null>(null)
@@ -33,10 +33,23 @@ const systemInfo = uni.getSystemInfoSync()
 const statusBarHeight = systemInfo.statusBarHeight || 0
 /** 1rpx 对应的 px，用于与样式中的 rpx 高度对齐 */
 const rpxRatio = systemInfo.windowWidth / 750
-/** 顶部品牌区高度：状态栏 + 24rpx 上内边距 + logo + 搜索框等，合计 240rpx */
-const HEADER_RPX_HEIGHT = 240
+/** 顶部品牌区上内边距 */
 const headerPaddingTop = statusBarHeight + 24 * rpxRatio
-const stickyTop = statusBarHeight + HEADER_RPX_HEIGHT * rpxRatio
+/** 筛选栏吸顶偏移：动态测量头部真实高度，避免计算误差导致吸顶缝隙 */
+const stickyTop = ref(statusBarHeight + 240 * rpxRatio)
+const instance = getCurrentInstance()
+
+onReady(() => {
+	uni.createSelectorQuery()
+		.in(instance?.proxy)
+		.select('.header')
+		.boundingClientRect((rect) => {
+			if (rect && !Array.isArray(rect) && rect.height) {
+				stickyTop.value = rect.height
+			}
+		})
+		.exec()
+})
 
 const goSearch = () => {
 	uni.navigateTo({ url: '/pages-customer/search/search' })
@@ -61,7 +74,6 @@ onReachBottom(() => {
 	z-index: 20;
 	padding: 0 24rpx 20rpx;
 	background-color: #b8d98e;
-	border-radius: 0 0 24rpx 24rpx;
 }
 
 .brand {

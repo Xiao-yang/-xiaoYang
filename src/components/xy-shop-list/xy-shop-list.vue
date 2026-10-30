@@ -30,17 +30,13 @@
 		<!-- 摊位列表 -->
 		<view class="list">
 			<view v-for="shop in list" :key="shop.id" class="shop">
-				<!-- 摊位图片与名称左右布局 -->
-				<view class="shop__head">
-					<image
-						v-if="shop.stallPhotos.length"
+				<!-- 摊位图片与名称左右布局，点击进入店铺 -->
+				<view class="shop__head" @click="goShop(shop.id)">
+					<xy-image
 						class="shop__cover"
 						:src="shop.stallPhotos[0]"
 						mode="aspectFill"
 					/>
-					<view v-else class="shop__cover shop__cover--empty">
-						<text class="shop__cover-text">暂无图片</text>
-					</view>
 
 					<view class="shop__info">
 						<view class="shop__title">
@@ -59,7 +55,7 @@
 					</view>
 				</view>
 
-				<!-- 商品：图片 + 名称 + 价格，左右滑动，最多 6 个 -->
+				<!-- 商品：图片 + 名称 + 价格，左右滑动，最多 6 个；点击进入店铺并定位到该商品 -->
 				<scroll-view
 					v-if="shop.dishes.length"
 					class="shop__dishes"
@@ -68,18 +64,20 @@
 					:show-scrollbar="false"
 				>
 					<view class="dish-list">
-						<view v-for="dish in shop.dishes" :key="dish.id" class="dish">
-							<image
-								v-if="dish.image"
+						<view
+							v-for="dish in shop.dishes"
+							:key="dish.id"
+							class="dish"
+							@click="goDish(shop.id, dish.id)"
+						>
+							<xy-image
 								class="dish__image"
 								:src="dish.image"
 								mode="aspectFill"
+								default-text="暂无"
 							/>
-							<view v-else class="dish__image dish__image--empty">
-								<text class="dish__image-text">暂无</text>
-							</view>
 							<text class="dish__name">{{ dish.name }}</text>
-							<text class="dish__price">¥{{ dish.price.toFixed(2) }}</text>
+							<text v-if="!isVendor" class="dish__price">¥{{ dish.price.toFixed(2) }}</text>
 						</view>
 					</view>
 				</scroll-view>
@@ -102,9 +100,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { getVendors } from '@/api/vendor'
 import type { VendorListItem } from '@/api/vendor'
+import { useUserStore } from '@/store/user'
 
 const props = withDefaults(
 	defineProps<{
@@ -122,6 +121,10 @@ const props = withDefaults(
 	}
 )
 
+const userStore = useUserStore()
+/** 摊主身份：隐藏价格且禁止进入店铺详情 */
+const isVendor = computed(() => userStore.userInfo.role === 'vendor')
+
 /** 排序选项 */
 const SORTS: { label: string; value: 'default' | 'distance' | 'rating' }[] = [
 	{ label: '综合', value: 'default' },
@@ -131,11 +134,10 @@ const SORTS: { label: string; value: 'default' | 'distance' | 'rating' }[] = [
 
 /** 距离范围选项，0 表示不限 */
 const DISTANCES: { label: string; value: number }[] = [
-	{ label: '不限', value: 0 },
-	{ label: '500米', value: 500 },
-	{ label: '1公里', value: 1000 },
-	{ label: '3公里', value: 3000 },
-	{ label: '10公里', value: 10000 }
+	{ label: '10km', value: 10000 },
+	{ label: '3km', value: 3000 },
+	{ label: '1km', value: 1000 },
+	{ label: '500m', value: 500 }
 ]
 
 const PAGE_SIZE = 10
@@ -167,10 +169,10 @@ const fetchLocation = () =>
 		})
 	})
 
-/** 距离文案：不足 1 公里显示米，否则显示公里 */
-const formatDistance = (distance: number | null) => {
-	if (distance === null) return '距离未知'
-	return distance < 1000 ? `${distance}米` : `${(distance / 1000).toFixed(1)}公里`
+/** 距离文案：不足 1 公里显示米，否则显示公里；兼容 null / undefined / NaN */
+const formatDistance = (distance: number | null | undefined) => {
+	if (distance === null || distance === undefined || Number.isNaN(distance)) return '距离未知'
+	return distance < 1000 ? `${distance}m` : `${(distance / 1000).toFixed(1)}km`
 }
 
 /**
@@ -206,7 +208,14 @@ const load = async (reset = false) => {
 		})
 		// 已有更新的请求发出，丢弃这次结果
 		if (token !== requestId) return
-		list.value = isFirstPage ? data.list : [...list.value, ...data.list]
+		// 归一化：后端字段可能缺失，统一兜底为数组/默认值，避免模板访问 .length 报错
+		const normalized = (data.list || []).map((shop) => ({
+			...shop,
+			stallPhotos: Array.isArray(shop.stallPhotos) ? shop.stallPhotos : [],
+			rating: typeof shop.rating === 'number' ? shop.rating : 0,
+			dishes: Array.isArray(shop.dishes) ? shop.dishes : []
+		}))
+		list.value = isFirstPage ? normalized : [...list.value, ...normalized]
 		total.value = data.total
 		hasMore.value = list.value.length < data.total
 	} catch (err) {
@@ -245,11 +254,31 @@ const changeDistance = (value: number) => {
 	load(true)
 }
 
-/** 关键词变化时防抖刷新 */
+/** 点击摊位图片/名称进入店铺详情（摊主身份禁止进入） */
+const goShop = (vendorId: number) => {
+	if (isVendor.value) return
+	uni.navigateTo({ url: `/pages-customer/shop-detail/shop-detail?id=${vendorId}` })
+}
+
+/** 点击商品进入店铺详情并定位到该商品（摊主身份禁止进入） */
+const goDish = (vendorId: number, dishId: number) => {
+	if (isVendor.value) return
+	uni.navigateTo({
+		url: `/pages-customer/shop-detail/shop-detail?id=${vendorId}&dishId=${dishId}`
+	})
+}
+
+/** 关键词变化时防抖刷新；关键词为空时清空结果（搜索页清空场景） */
 watch(
 	() => props.keyword,
-	() => {
+	(val) => {
 		if (timer) clearTimeout(timer)
+		if (!val) {
+			list.value = []
+			hasMore.value = false
+			total.value = 0
+			return
+		}
 		timer = setTimeout(() => load(true), 400)
 	}
 )
@@ -422,7 +451,7 @@ defineExpose({ loadMore })
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 150rpx;
+	width: 130rpx;
 	flex-shrink: 0;
 	margin-right: 20rpx;
 }
@@ -432,8 +461,8 @@ defineExpose({ loadMore })
 }
 
 .dish__image {
-	width: 150rpx;
-	height: 150rpx;
+	width: 130rpx;
+	height: 130rpx;
 	border-radius: 12rpx;
 	background-color: #f0f2eb;
 }
@@ -451,7 +480,7 @@ defineExpose({ loadMore })
 
 .dish__name {
 	width: 100%;
-	margin-top: 10rpx;
+	margin-top: 5rpx;
 	font-size: 24rpx;
 	color: #333333;
 	overflow: hidden;
@@ -465,6 +494,11 @@ defineExpose({ loadMore })
 	font-size: 24rpx;
 	font-weight: bold;
 	color: #f56c6c;
+}
+
+.dish__price--hidden {
+	font-weight: normal;
+	color: #bbbbbb;
 }
 
 .shop__no-dish {

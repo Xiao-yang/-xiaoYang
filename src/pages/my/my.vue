@@ -2,7 +2,7 @@
 	<view class="page">
 		<!-- 已登录：展示用户头像、昵称与身份 -->
 		<view v-if="userStore.isLogin" class="user-card">
-			<image class="avatar" :src="avatarUrl" mode="aspectFill" />
+			<xy-image class="avatar" :src="avatarUrl" mode="aspectFill" />
 			<view class="user-info">
 				<view class="name-row">
 					<text class="nickname">{{ displayName }}</text>
@@ -14,7 +14,7 @@
 
 		<!-- 未登录：展示去登录按钮 -->
 		<view v-else class="user-card">
-			<image class="avatar" :src="avatarUrl" mode="aspectFill" />
+			<xy-image class="avatar" :src="avatarUrl" mode="aspectFill" />
 			<view class="user-info">
 				<text class="nickname">未登录</text>
 				<text class="desc">登录后查看个人信息</text>

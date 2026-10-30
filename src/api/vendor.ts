@@ -1,4 +1,5 @@
 import { get, put } from '@/utils/request'
+import type { Dish } from './dish'
 
 /** 摊位资料，字段与后端 VendorVO 一致 */
 export interface Vendor {
@@ -31,9 +32,17 @@ export interface VendorDishPreview {
 /** 顾客端摊位列表项 */
 export interface VendorListItem extends Vendor {
 	/** 距离（米），无定位或无坐标时为 null */
-	distance: number | null
+	distance: number | null | undefined
 	/** 默认展示的商品，最多 6 个 */
 	dishes: VendorDishPreview[]
+}
+
+/** 顾客端摊位详情，包含完整商品（含规格） */
+export interface VendorDetail extends Vendor {
+	/** 距离（米），无定位或无坐标时为 null */
+	distance: number | null | undefined
+	/** 摊位下的全部在售商品，含规格 */
+	dishes: Dish[]
 }
 
 /** 分页返回结构 */
@@ -93,3 +102,6 @@ export const getVendors = (params: VendorListParams = {}) => {
 	if (keyword) query.keyword = keyword
 	return get<PageResult<VendorListItem>>('/vendors', query)
 }
+
+/** 顾客端摊位详情（含完整商品与规格） */
+export const getVendorDetail = (id: number) => get<VendorDetail>(`/vendors/${id}`)

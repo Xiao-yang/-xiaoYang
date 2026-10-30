@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<view class="login-card">
-			<image class="logo" src="/static/logo.png" mode="aspectFill" />
+			<xy-image class="logo" src="/static/logo.png" mode="aspectFill" />
 			<text class="title">欢迎使用</text>
 			<text class="desc">登录后查看你的信息</text>
 

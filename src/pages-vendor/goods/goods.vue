@@ -26,15 +26,11 @@
 		<!-- 商品列表 -->
 		<view class="list">
 			<view v-for="item in list" :key="item.id" class="goods-item">
-				<image
-					v-if="item.image"
+				<xy-image
 					class="goods-item__image"
 					:src="item.image"
 					mode="aspectFill"
 				/>
-				<view v-else class="goods-item__image goods-item__image--empty">
-					<text class="goods-item__image-text">暂无图片</text>
-				</view>
 
 				<view class="goods-item__main">
 					<view class="goods-item__head">

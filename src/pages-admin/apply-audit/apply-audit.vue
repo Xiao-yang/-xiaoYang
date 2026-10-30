@@ -45,7 +45,7 @@
 				<view class="info-row">
 					<text class="info-label">图&emsp;&emsp;片：</text>
 					<view class="photos">
-						<image
+						<xy-image
 							v-for="(url, index) in (item.stallPhotos || []).slice(0, 3)"
 							:key="index"
 							class="photo"

@@ -51,6 +51,12 @@
 					"style": {
 						"navigationBarTitleText": "搜索"
 					}
+				},
+				{
+					"path": "shop-detail/shop-detail",
+					"style": {
+						"navigationBarTitleText": "店铺详情"
+					}
 				}
 			]
 		},

@@ -70,6 +70,10 @@ export const getMyDishes = (params: MyDishListParams = {}) => {
 	return get<DishListResult>('/dishes/mine', query)
 }
 
+/** 顾客端：获取指定摊位的在售商品列表（含规格） */
+export const getDishesByVendor = (vendorId: number) =>
+	get<Dish[]>('/dishes', { vendorId })
+
 /** 商品详情 */
 export const getDishDetail = (id: number) => get<Dish>(`/dishes/${id}`)
 

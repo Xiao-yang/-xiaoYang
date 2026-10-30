@@ -18,7 +18,7 @@
 					interval="4000"
 				>
 					<swiper-item v-for="(photo, index) in vendor.stallPhotos" :key="index">
-						<image class="banner__image" :src="photo" mode="aspectFill" />
+						<xy-image class="banner__image" :src="photo" mode="aspectFill" />
 					</swiper-item>
 				</swiper>
 				<view v-else class="banner banner--empty">
